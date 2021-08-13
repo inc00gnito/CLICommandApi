@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CommandsApi.Data;
+using CommandsApi.Models;
 
 namespace CommandsApi.Controllers
 {
@@ -17,6 +18,13 @@ namespace CommandsApi.Controllers
         public CommandController(ICommandData contextData)
         {
             _contextData = contextData;
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<Command>> GetAll()
+        {
+            var model = _contextData.GetAllCommands();
+            return Ok();
         }
     }
 }
