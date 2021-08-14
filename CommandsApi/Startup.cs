@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using CommandsApi.Data;
@@ -29,14 +30,16 @@ namespace CommandsApi
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddScoped<ICommandData, CommandData>();
+            
             services.AddControllers();
             services.AddDbContext<CommandApiContext>(options => options.UseSqlServer(
-                Configuration.GetConnectionString("Commands")));
-            
+               Configuration.GetConnectionString("Commands")));
+            services.AddScoped<ICommandData, CommandData>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CommandsApi", Version = "v1" });
+                var filePath = Path.Combine(System.AppContext.BaseDirectory, "CommandsApi.xml");
+                c.IncludeXmlComments(filePath);
             });
         }
 
@@ -49,6 +52,7 @@ namespace CommandsApi
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CommandsApi v1"));
             }
+
 
             app.UseHttpsRedirection();
 
