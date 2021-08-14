@@ -9,7 +9,7 @@ namespace CommandsApi.Data
 {
     public class CommandApiContext :DbContext
     {
-        public CommandApiContext(DbContextOptionsBuilder<CommandApiContext> options ): base()
+        public CommandApiContext(DbContextOptions<CommandApiContext> options ): base(options)
         { }
 
         public DbSet<Command> Commands { get; set; }

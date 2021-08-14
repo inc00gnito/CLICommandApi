@@ -9,7 +9,7 @@ namespace CommandsApi.Data
     public interface ICommandData
     {
         public IEnumerable<Command> GetAllCommands();
-        Command GetCommand(int id);
+        Command GetCommandById(int id);
         void CreateCommand(Command command);
         void UpdateCommand(Command command);
 

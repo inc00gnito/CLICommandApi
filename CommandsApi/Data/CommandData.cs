@@ -22,7 +22,7 @@ namespace CommandsApi.Data
             return _db.Commands;
         }
 
-        public Command GetCommand(int id)
+        public Command GetCommandById(int id)
         {
             return _db.Commands.FirstOrDefault(command => command.Id == id);
         }
@@ -42,7 +42,7 @@ namespace CommandsApi.Data
 
         public void DeleteCommand(int id)
         {
-            var command = GetCommand(id);
+            var command = GetCommandById(id);
             if (command != null)
                 _db.Commands.Remove(command);
             _db.SaveChanges();

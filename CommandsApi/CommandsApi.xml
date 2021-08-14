@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CommandsApi</name>
+    </assembly>
+    <members>
+        <member name="M:CommandsApi.Controllers.CommandController.GetAll">
+            <summary>
+            Retrieves all commands in the database
+            </summary>
+        </member>
+        <member name="M:CommandsApi.Controllers.CommandController.GetCommandById(System.Int32)">
+            <summary>
+            Retrieves a specific command by unique id
+            </summary>
+        </member>
+        <member name="M:CommandsApi.Controllers.CommandController.CreateCommand(CommandsApi.DTOs.CommandCreateDto)">
+            <summary>
+            Creating a command, requires filling three attributes: command name, description and platform
+            </summary>
+        </member>
+        <member name="M:CommandsApi.Controllers.CommandController.UpdateCommand(System.Int32,CommandsApi.DTOs.CommandUpdateDto)">
+            <summary>
+            Allows to update or change information of a command, retrieved by id
+            </summary>
+        </member>
+        <member name="M:CommandsApi.Controllers.CommandController.DeleteCommand(System.Int32)">
+            <summary>
+            Deletes a specific command by unique id
+            </summary>
+        </member>
+    </members>
+</doc>
