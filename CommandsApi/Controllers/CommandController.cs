@@ -8,6 +8,7 @@ using CommandsApi.Data;
 using CommandsApi.DTOs;
 using CommandsApi.Models;
 using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.Extensions.Logging;
 
 namespace CommandsApi.Controllers
 {
@@ -16,10 +17,12 @@ namespace CommandsApi.Controllers
     public class CommandController : ControllerBase
     {
         private readonly ICommandData _contextData;
+        private readonly ILogger<CommandController> _logger;
 
-        public CommandController(ICommandData contextData)
+        public CommandController(ICommandData contextData, ILogger<CommandController> logger)
         {
             _contextData = contextData;
+            _logger = logger;
         }
 
 
@@ -36,9 +39,11 @@ namespace CommandsApi.Controllers
         /// Retrieves a specific command by unique id
         /// </summary>
         [HttpGet("{id}")]
-        public CommandDto GetCommandById(int id)
+        public ActionResult<CommandDto> GetCommandById(int id)
         {
             var model = _contextData.GetCommandById(id);
+            if (model == null)
+                return NotFound();
             return model.AsDto();
         }
 
